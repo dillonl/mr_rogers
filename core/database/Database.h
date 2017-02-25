@@ -1,7 +1,7 @@
 #ifndef MRROGERS_DATABASE_H
 #define MRROGERS_DATABASE_H
 
-#include "core/file/File.h"
+#include "core/file/FileWriter.h"
 
 #include <memory>
 #include <vector>
@@ -12,16 +12,18 @@ namespace mr_rogers
 	{
 	public:
 		typedef std::shared_ptr< Database > SharedPtr;
-		Database();
+		Database(const std::string& dataPath);
 		~Database();
 
-		void loadFile(const std::string& filename);
-		void createFile(const std::string& filename, size_t filesize);
 		void addRecord(const char*, size_t n);
+		void generateIndex();
 		std::vector< uint64_t > getRecordsWithinDistance(const uint32_t distance);
 
 	private:
-		uint64_t m_current_file_position;
+		void createDataFile(const std::string& filename);
+
+		FileWriter::SharedPtr m_data_file_ptr;
+		std::string m_index_path;
 
 	};
 }

@@ -19,6 +19,7 @@ namespace mr_rogers
 
 	private:
 		FILE* m_file;
+		bool m_open;
 
 	};
 }

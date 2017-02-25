@@ -1,11 +1,13 @@
 #include "FileWriter.h"
 
 #include <string>
+#include <iostream>
 
 namespace mr_rogers
 {
 	FileWriter::FileWriter() :
-		m_file(nullptr)
+		m_file(nullptr),
+		m_open(false)
 	{
 	}
 
@@ -16,16 +18,31 @@ namespace mr_rogers
 
 	void FileWriter::createFile(const std::string& filename)
 	{
-		m_file = fopen(filename.c_str(), "wb");
+		if (!m_open)
+		{
+			m_open = true;
+			m_file = fopen(filename.c_str(), "w+");
+		}
 	}
 
 	void FileWriter::write(const char* data, size_t datasize)
 	{
-		fwrite(data, sizeof(char), datasize, m_file);
+		if (m_open)
+		{
+			fwrite(data, sizeof(char), datasize, m_file);
+		}
+		else
+		{
+			throw "error: you are writing to an unopened file";
+		}
 	}
 
 	void FileWriter::close()
 	{
-		fclose(m_file);
+		if (m_open)
+		{
+			fclose(m_file);
+			m_open = false;
+		}
 	}
 }
