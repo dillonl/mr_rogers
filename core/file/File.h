@@ -1,12 +1,13 @@
-#ifndef MRROGERS_FILE_H
-#define MRROGERS_FILE_H
+#pragma once
+
+#include "core/utils/Noncopyable.hpp"
 
 #include <memory>
 #include <fcntl.h>
 
 namespace mr_rogers
 {
-	class File
+	class File : private Noncopyable
 	{
 	public:
 		typedef std::shared_ptr< File > SharedPtr;
@@ -25,5 +26,3 @@ namespace mr_rogers
 
 	};
 }
-
-#endif //MRROGERS_FILE_H
