@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <stdio.h>
 
 namespace mr_rogers
 {
@@ -29,6 +30,19 @@ namespace mr_rogers
 	{
 		if (m_open)
 		{
+			fwrite(data, sizeof(char), datasize, m_file);
+		}
+		else
+		{
+			throw "error: you are writing to an unopened file";
+		}
+	}
+
+	void FileWriter::write(const char* data, size_t datasize, uint64_t offset)
+	{
+		if (m_open)
+		{
+			fseek(m_file, offset, SEEK_SET);
 			fwrite(data, sizeof(char), datasize, m_file);
 		}
 		else

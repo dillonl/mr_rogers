@@ -1,6 +1,7 @@
 INCLUDE_DIRECTORIES(
 	${CMAKE_CURRENT_SOURCE_DIR}
 	${EIGEN_INCLUDE_DIR}
+	${EXTERNAL_SORT_INCLUDE_DIR}
 )
 
 #set(CMAKE_BUILD_TYPE Debug) # uncomment this when you need a debug build

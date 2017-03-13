@@ -5,7 +5,8 @@
 
 TEST(DatabaseTest, DatabaseCreate)
 {
-
+	std::string dataPath = TEST_DATA_DIR;
+	mr_rogers::Database db(dataPath);
 }
 
 TEST(DatabaseTest, TestHyperplaneCreate)

@@ -16,6 +16,7 @@ namespace mr_rogers
 
 		void createFile(const std::string& filename);
 		void write(const char* data, size_t datasize);
+		void write(const char* data, size_t datasize, uint64_t offset);
 		void close();
 
 	private:
