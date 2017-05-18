@@ -38,11 +38,11 @@ namespace mr_rogers
 		}
 	}
 
-	void FileWriter::write(const char* data, size_t datasize, uint64_t offset)
+	void FileWriter::write(const char* data, size_t datasize, uint64_t& offset)
 	{
 		if (m_open)
 		{
-			fseek(m_file, offset, SEEK_SET);
+			offset = ftell(m_file);
 			fwrite(data, sizeof(char), datasize, m_file);
 		}
 		else

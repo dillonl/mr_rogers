@@ -15,8 +15,8 @@ namespace mr_rogers
 		~IDataItem();
 
 		T getValue() { return m_value; }
+		std::string getData() { return m_data; }
 	private:
-		uint64_t m_id;
 		T m_value;
 		std::string m_data;
 	};

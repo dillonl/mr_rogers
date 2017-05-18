@@ -2,11 +2,30 @@
 #define TEST_DATABASE_TESTS_HPP
 
 #include "core/database/Database.h"
+#include "core/utils/ThreadPool.hpp"
+
+#include <random>
 
 TEST(DatabaseTest, DatabaseCreate)
 {
 	std::string dataPath = TEST_DATA_DIR;
-	mr_rogers::Database db(dataPath);
+	mr_rogers::Database db(dataPath, 256);
+
+	// First create an instance of an engine.
+	std::random_device rnd_device;
+	// Specify the engine and distribution.
+	std::mt19937 mersenne_engine(rnd_device());
+	std::uniform_int_distribution<int> dist(0, 256);
+
+	auto gen = std::bind(dist, mersenne_engine);
+	std::vector<uint8_t> vec(256);
+	for (int i = 0; i < 10; ++i)
+	{
+		generate(begin(vec), end(vec), gen);
+		db.addRecord(&vec[0], "");
+	}
+    mr_rogers::ThreadPool::Instance()->joinAll();
+	db.generateIndex();
 }
 
 TEST(DatabaseTest, TestHyperplaneCreate)

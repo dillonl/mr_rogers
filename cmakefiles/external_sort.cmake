@@ -32,16 +32,16 @@ SET(EXTERNAL_SORT_PROJECT external_sort_project CACHE INTERNAL "external_sort pr
 SET(EXTERNAL_SORT_DIR ${CMAKE_BINARY_DIR}/externals/external_sort CACHE INTERNAL "external_sort project directory")
 SET(EXTERNAL_SORT_LIB)
 ExternalProject_Add(${EXTERNAL_SORT_PROJECT}
-	GIT_REPOSITORY https://github.com/alveko/external_sort.git
-	GIT_TAG 978cec45c4883ee5b34277b83d5fb9d929f0d3ee #lock in the commit id so we don't this doesn't break in the future
+	GIT_REPOSITORY https://github.com/dillonl/external_sort.git
+	GIT_TAG 61bc266759ca35e748d064257c5d3443e7a12dbe #lock in the commit id so we don't this doesn't break in the future
 	CONFIGURE_COMMAND ""
 	BUILD_COMMAND ""
     INSTALL_COMMAND ""
 	PREFIX ${EXTERNAL_SORT_DIR}
 )
 
-ExternalProject_Get_Property(${EXTERNAL_SORT_PROJECT} INSTALL_DIR)
+#ExternalProject_Get_Property(${EXTERNAL_SORT_PROJECT} INSTALL_DIR)
 ExternalProject_Get_Property(${EXTERNAL_SORT_PROJECT} SOURCE_DIR)
-ExternalProject_Get_Property(${EXTERNAL_SORT_PROJECT} BINARY_DIR)
+#ExternalProject_Get_Property(${EXTERNAL_SORT_PROJECT} BINARY_DIR)
 
 SET(EXTERNAL_SORT_INCLUDE_DIR ${SOURCE_DIR} CACHE INTERNAL "EXTERNAL_SORT Include")

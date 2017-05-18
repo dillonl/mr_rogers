@@ -14,6 +14,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
 
 set(CORE_SOURCES
     file/FileWriter.cpp
+	file/FileReader.cpp
 	database/Database.cpp
   )
 
@@ -23,8 +24,7 @@ add_library(mr_rogers_core STATIC
 
 SET(CORE_LIB mr_rogers_core CACHE STRING "THE CORE LIBRARY") #add mr_rogers_core and utils to the list of core libs
 
-TARGET_LINK_LIBRARIES(${CORE_LIB}
-)
+TARGET_LINK_LIBRARIES(${CORE_LIB})
 
 add_dependencies(${CORE_LIB} ${MR_ROGERS_EXTERNAL_PROJECT})
 
